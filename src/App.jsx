@@ -1,9 +1,13 @@
 import './App.css'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <>
-      <section id="center">
+    <Navbar/>
+  
+
+          <section id="center">
         <div>
           <h1>App Mototaxista</h1>
           <p>
