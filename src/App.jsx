@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
