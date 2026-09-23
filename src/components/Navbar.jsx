@@ -8,6 +8,8 @@ function Navbar() {
           <Link to="/dashboard">Inicio</Link>
           <Link to="/login">Iniciar sesión</Link>
           <Link to="/register">Crear cuenta</Link>
+          <Link to="/trips/new">Registrar Viaje</Link>
+          <Link to="/trips">Historial de Viajes</Link>
         </div>
       </nav>
   )
