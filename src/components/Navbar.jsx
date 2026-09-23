@@ -10,6 +10,7 @@ function Navbar() {
           <Link to="/register">Crear cuenta</Link>
           <Link to="/trips/new">Registrar Viaje</Link>
           <Link to="/trips">Historial de Viajes</Link>
+          <Link to="/profile">Mi perfil</Link>
         </div>
       </nav>
   )
