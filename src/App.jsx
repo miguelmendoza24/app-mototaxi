@@ -7,6 +7,7 @@ import RegisterTrip from "./pages/RegisterTrip";
 import TripHistory from "./pages/TripHistory";
 import Profile from "./pages/Profile";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import ProtectedRoute from "./components/protectedRoute.jsx";
 
 function App() {
   return (
@@ -15,12 +16,40 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/trips/new" element={<RegisterTrip />} />
-        <Route path="/trips" element={<TripHistory />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/trips/new"
+          element={
+            <ProtectedRoute>
+              <RegisterTrip />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trips"
+          element={
+            <ProtectedRoute>
+              <TripHistory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
