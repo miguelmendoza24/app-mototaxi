@@ -1,0 +1,51 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /trips/{tripId} {
+
+      // Validate trip data
+      function isValidTrip(data) {
+        return data.keys().hasAll([
+            'pickup',
+            'destination',
+            'price',
+            'userId',
+            'createdAt'
+          ])
+          && data.keys().hasOnly([
+            'pickup',
+            'destination',
+            'price',
+            'userId',
+            'createdAt'
+          ])
+          && data.pickup is string
+          && data.pickup.size() > 0
+          && data.destination is string
+          && data.destination.size() > 0
+          && data.price is number
+          && data.price > 0
+          && data.createdAt is timestamp;
+      }
+
+      // Only authenticated owners can create their trips
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && isValidTrip(request.resource.data);
+
+      // Only the owner can read or delete a trip
+      allow read, delete: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+
+      // Owners can update trips without changing ownership or date
+      allow update: if request.auth != null
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.createdAt == resource.data.createdAt
+        && isValidTrip(request.resource.data);
+    }
+  }
+}
+
