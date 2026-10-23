@@ -63,26 +63,39 @@ function Dashboard() {
 
 if (loading) {
     return (
-      <section>
-        <h1>Resumen de viajes</h1>
-        <p>Cargando resumen diario...</p>
+      <section className="app-container dashboard-page">
+        <h1 className="dashboard-title">Resumen de viajes</h1>
+        <p className="dashboard-message">Cargando resumen diario...</p>
       </section>
     );
   }
   if (error) {
     return (
-      <section>
-        <h1>Resumen de viajes</h1>
-        <p role="alert">{error}</p>
+      <section className="app-container dashboard-page">
+        <h1 className="dashboard-title">Resumen de viajes</h1>
+        <p className="dashboard-message" role="alert">{error}</p>
       </section>
     );
   }
 
   return (
-    <section>
-      <h1>Resumen de viajes</h1>
-      <p>Ganancias de hoy: ${dailyEarnings.toFixed(2)} MXN</p>
-      <p>Viajes realizados: {dailyTrips}</p>
+    <section className="app-container dashboard-page">
+      <h1 className="dashboard-title">Resumen de viajes</h1>
+      <div className="dashboard-grid">
+        <div className="dashboard-card">
+<p className="dashboard-label">Ganancias de hoy</p>
+<p className="dashboard-value">
+  ${dailyEarnings.toFixed(2)} MXN
+</p>
+        
+        </div>
+        <div className="dashboard-card">
+        <p className="dashboard-label">Viajes realizados</p>
+        <p className="dashboard-value">
+          {dailyTrips}
+        </p>
+        </div>
+      </div>
     </section>
   );
 }

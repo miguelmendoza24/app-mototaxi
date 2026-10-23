@@ -18,9 +18,9 @@ function Navbar() {
   };
 
   return (
-    <nav>
-      <div>
-        <h2>App Mototaxista</h2>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <h2 className="navbar-brand">App Mototaxista</h2>
         {user ? (
           <>
             <Link to="/dashboard">Inicio</Link>

@@ -23,8 +23,9 @@ function Login() {
   };
 
   return (
-    <section>
-      <h1>Iniciar sesión</h1>
+    <section className='app-container auth-page'>
+      <div className='auth-card'>
+      <h1 className='auth-title'>Iniciar sesión</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Correo electrónico</label>
         <input 
@@ -47,7 +48,8 @@ function Login() {
 
         <button type="submit">Ingresar</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className='auth-error' role='alert'>{error}</p>}
+         </div>
     </section>
   );
 }
