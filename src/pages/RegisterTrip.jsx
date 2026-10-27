@@ -11,6 +11,14 @@ function RegisterTrip() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const cleanPickup = pickup.trim();
+    const cleanDestination = destination.trim();
+
+    if( !cleanPickup || !cleanDestination){
+     console.error("El origen y el destino son obligatorios");
+return;
+
+    }
 
     if (!user) {
       console.error("User not authenticated");
@@ -19,8 +27,8 @@ function RegisterTrip() {
 
     try {
       await addDoc(collection(db, "trips"), {
-        pickup,
-        destination,
+        pickup: cleanPickup,
+        destination: cleanDestination,
         price: parseFloat(price),
         userId: user.uid,
         createdAt: serverTimestamp(),
